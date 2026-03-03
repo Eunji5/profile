@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오은지 Oh Eunji — 행정학 박사</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #f8f6f1;
+      --text: #18160f;
+      --muted: #7a7264;
+      --accent: #2e4a38;
+      --accent2: #6b8f72;
+      --line: #ddd8cc;
+      --white: #ffffff;
+      --tag-bg: #eef2eb;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Pretendard', -apple-system, sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5vw;
+      background: rgba(248,246,241,0.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-logo {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--accent); letter-spacing: -0.01em;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 60px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 7rem 4rem 7rem 6vw;
+      border-right: 1px solid var(--line);
+    }
+    .hero-eyebrow {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent2);
+      margin-bottom: 1.8rem; font-weight: 500;
+    }
+    .hero-name-kr {
+      font-family: 'Pretendard', sans-serif;
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      font-weight: 200; line-height: 1; letter-spacing: -0.04em;
+      color: var(--accent);
+    }
+    .hero-name-kr em { font-style: normal; color: var(--accent); font-weight: 200; }
+    .hero-name-en {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 1.2rem; font-weight: 300;
+      color: var(--muted); letter-spacing: 0.12em;
+      margin-bottom: 2.5rem; text-transform: uppercase;
+    }
+    .hero-rule { width: 48px; height: 1px; background: var(--accent2); margin-bottom: 2rem; }
+    .hero-summary {
+      font-size: 0.9rem; color: var(--muted); max-width: 400px; line-height: 2;
+    }
+    .hero-right {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 7rem 5vw 7rem 4rem; gap: 1.2rem;
+      position: relative; overflow: hidden;
+    }
+    .bg-watermark {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22rem; font-weight: 300;
+      color: rgba(46,74,56,0.04); pointer-events: none;
+      user-select: none; line-height: 1;
+    }
+    .info-row {
+      display: flex; align-items: baseline; gap: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      position: relative; z-index: 1;
+      transition: box-shadow 0.2s;
+    }
+    .info-row:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+    .info-row::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 3px;
+      background: var(--accent);
+    }
+    .info-label {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent2);
+      min-width: 68px; flex-shrink: 0; font-weight: 600;
+    }
+    .info-value { font-size: 0.88rem; color: var(--text); }
+
+    /* SECTIONS */
+    section { padding: 6rem 6vw; border-top: 1px solid var(--line); }
+    .sec-header {
+      display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 3.5rem;
+    }
+    .sec-num {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.1em; color: var(--accent2); font-weight: 500;
+    }
+    .sec-title {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 2rem; font-weight: 700; letter-spacing: -0.03em;
+    }
+
+    /* DATA TABLE */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+    .data-table th {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--accent2);
+      text-align: left; padding: 0.6rem 1rem 0.8rem;
+      border-bottom: 2px solid var(--accent2); font-weight: 600;
+    }
+    .data-table td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top; line-height: 1.6;
+    }
+    .data-table tr:hover td { background: rgba(46,74,56,0.03); }
+    .data-table td.period {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.75rem; color: var(--muted); white-space: nowrap; font-weight: 400;
+    }
+    .degree-name { font-weight: 400; font-size: 0.95rem; }
+    .sub-text { font-size: 0.8rem; color: var(--muted); margin-top: 0.15rem; }
+
+    /* PUBLICATIONS */
+    .pub-card {
+      padding: 2rem 2.2rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      margin-bottom: 1rem;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .pub-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.07); transform: translateY(-2px); }
+    .pub-card::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 3px;
+    }
+    .pub-card.kci::before   { background: var(--accent); }
+    .pub-card.ssci::before  { background: #c0392b; }
+    .pub-card.thesis::before { background: var(--accent2); }
+    .pub-tag {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-block; padding: 0.2rem 0.6rem;
+      border-radius: 2px; margin-bottom: 0.7rem; font-weight: 700;
+    }
+    .pub-tag.kci    { background: var(--tag-bg); color: var(--accent); }
+    .pub-tag.ssci   { background: #fdf0ee; color: #c0392b; }
+    .pub-tag.thesis { background: var(--tag-bg); color: var(--accent2); }
+    .pub-title { font-size: 1rem; font-weight: 400; margin-bottom: 0.5rem; line-height: 1.5; }
+    .pub-meta  { font-size: 0.78rem; color: var(--muted); }
+    .pub-meta span { margin-right: 1.2rem; }
+
+    /* CONFERENCES */
+    .conf-item {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 1.5rem; padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line); align-items: start;
+    }
+    .conf-badge {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.06em;
+      text-transform: uppercase; text-align: center;
+      padding: 0.3rem 0.4rem;
+      border: 1px solid currentColor;
+      border-radius: 2px; margin-top: 0.2rem; font-weight: 600;
+    }
+    .conf-badge.intl { color: #c0392b; }
+    .conf-badge.dom  { color: var(--accent); }
+    .conf-title { font-size: 0.92rem; font-weight: 400; line-height: 1.5; margin-bottom: 0.25rem; }
+    .conf-meta  { font-size: 0.78rem; color: var(--muted); }
+
+    /* AWARDS */
+    .award-item {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 2rem; padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line); align-items: start;
+    }
+    .award-date { font-family: 'Pretendard', sans-serif; font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+    .award-grade {
+      display: inline-block;
+      font-family: 'Pretendard', sans-serif; font-size: 0.65rem;
+      background: var(--accent); color: var(--white);
+      padding: 0.15rem 0.5rem; border-radius: 2px;
+      letter-spacing: 0.04em; margin-bottom: 0.4rem; font-weight: 700;
+    }
+    .award-content { font-size: 0.9rem; font-weight: 400; }
+    .award-org { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* LICENSES */
+    .lic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .lic-card {
+      background: var(--white); border: 1px solid var(--line);
+      padding: 1.4rem 1.6rem; transition: box-shadow 0.2s;
+    }
+    .lic-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
+    .lic-name { font-size: 0.92rem; font-weight: 400; margin-bottom: 0.4rem; }
+    .lic-meta { font-family: 'Pretendard', sans-serif; font-size: 0.72rem; color: var(--muted); font-weight: 400; }
+
+    /* PROJECTS */
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .proj-card {
+      background: var(--white); border: 1px solid var(--line);
+      padding: 1.5rem; transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .proj-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.07); transform: translateY(-2px); }
+    .proj-num {
+      font-family: 'Pretendard', sans-serif; font-size: 0.65rem;
+      color: var(--accent2); margin-bottom: 0.6rem; letter-spacing: 0.04em; font-weight: 600;
+    }
+    .proj-name   { font-size: 0.88rem; font-weight: 500; line-height: 1.5; margin-bottom: 0.5rem; }
+    .proj-agency { font-size: 0.76rem; color: var(--muted); margin-bottom: 0.3rem; }
+    .proj-period { font-family: 'Pretendard', sans-serif; font-size: 0.7rem; color: var(--accent2); font-weight: 400; }
+
+    /* CONTACT */
+    #contact { background: var(--accent); }
+    #contact .sec-title { color: var(--bg); }
+    #contact .sec-num   { color: var(--accent2); }
+    .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .contact-item { border-top: 1px solid rgba(248,246,241,0.2); padding-top: 1.2rem; }
+    .contact-lbl {
+      font-family: 'Pretendard', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 0.5rem; font-weight: 600;
+    }
+    .contact-val {
+      font-size: 0.88rem; color: var(--bg);
+      text-decoration: none; display: block; word-break: break-all;
+    }
+    a.contact-val:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    footer {
+      padding: 1.8rem 6vw;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--line);
+    }
+    .footer-copy { font-family: 'Pretendard', sans-serif; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.02em; font-weight: 400; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow  { animation: fadeUp 0.6s ease 0.1s both; }
+    .hero-name-kr  { animation: fadeUp 0.6s ease 0.2s both; }
+    .hero-name-en  { animation: fadeUp 0.6s ease 0.3s both; }
+    .hero-rule     { animation: fadeUp 0.6s ease 0.35s both; }
+    .hero-summary  { animation: fadeUp 0.6s ease 0.4s both; }
+    .info-row:nth-child(1) { animation: fadeUp 0.6s ease 0.3s both; }
+    .info-row:nth-child(2) { animation: fadeUp 0.6s ease 0.4s both; }
+    .info-row:nth-child(3) { animation: fadeUp 0.6s ease 0.5s both; }
+    .info-row:nth-child(4) { animation: fadeUp 0.6s ease 0.6s both; }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 5rem 5vw 3rem; border-right: none; border-bottom: 1px solid var(--line); }
+      .hero-right { padding: 3rem 5vw 5rem; }
+      .bg-watermark { font-size: 12rem; }
+      section { padding: 4rem 5vw; }
+      .proj-grid, .lic-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+      .award-item { grid-template-columns: 130px 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0.8rem 4vw; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.58rem; }
+      .proj-grid, .lic-grid, .contact-grid { grid-template-columns: 1fr; }
+      .award-item, .conf-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">오은지 Oh Eunji</span>
+  <ul class="nav-links">
+    <li><a href="#edu">학력</a></li>
+    <li><a href="#career">경력</a></li>
+    <li><a href="#pub">논문</a></li>
+    <li><a href="#conf">학회</a></li>
+    <li><a href="#awards">수상</a></li>
+    <li><a href="#licenses">자격</a></li>
+    <li><a href="#projects">연구용역</a></li>
+    <li><a href="#contact">연락처</a></li>
+  </ul>
+</nav>
+
+<div class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Ph.D. Public Administration · Researcher · CEO</p>
+    <div class="hero-name-kr">오<em>은</em>지</div>
+    <div class="hero-name-en">Oh Eunji</div>
+    <div class="hero-rule"></div>
+    <p class="hero-summary">
+      지방정부 리더십, 거버넌스, 공간 정책을 연구합니다.
+    </p>
+  </div>
+  <div class="hero-right">
+    <div class="bg-watermark">研</div>
+    <div class="info-row">
+      <span class="info-label">소속 1</span>
+      <span class="info-value">고려대학교 평화와 민주주의연구소 연구원</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">소속 2</span>
+      <span class="info-value">㈜이공랩 (이로운공간연구소) 대표이사</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">학위</span>
+      <span class="info-value">행정학 박사 — 성균관대 국정전문대학원 (2025)</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">전문</span>
+      <span class="info-value">지방행정 · 거버넌스 · 공간정책 · 복지정책</span>
+    </div>
+  </div>
+</div>
+
+<!-- 학력 -->
+<section id="edu">
+  <div class="sec-header">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">학력</h2>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>재학기간</th>
+        <th>학교명</th>
+        <th>대학원</th>
+        <th>전공</th>
+        <th>학위</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="period">2022.09 — 2025.08</td>
+        <td><div class="degree-name">성균관대학교</div></td>
+        <td><div class="sub-text">국정전문대학원</div></td>
+        <td>행정학</td>
+        <td><span style="color:var(--accent);font-weight:400;">박사</span></td>
+      </tr>
+      <tr>
+        <td class="period">2011.09 — 2013.08</td>
+        <td><div class="degree-name">경희대학교</div></td>
+        <td><div class="sub-text">일반대학원</div></td>
+        <td>아동가족학</td>
+        <td><span style="color:var(--accent2);font-weight:400;">석사</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 경력 -->
+<section id="career">
+  <div class="sec-header">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">경력</h2>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>근무기간</th>
+        <th>근무기관</th>
+        <th>직위</th>
+        <th>담당직무</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="period">2024.03 — 현재</td>
+        <td><div class="degree-name">㈜이공랩</div></td>
+        <td>대표이사</td>
+        <td><div class="sub-text">정책연구용역 입찰 및 수행</div></td>
+      </tr>
+      <tr>
+        <td class="period">2022.04 — 2024.02</td>
+        <td><div class="degree-name">대구대학교 산학협력단</div></td>
+        <td>연구원</td>
+        <td><div class="sub-text">정책연구용역 수행</div></td>
+      </tr>
+      <tr>
+        <td class="period">2021.09 — 2022.02</td>
+        <td><div class="degree-name">한국지능정보사회진흥원</div></td>
+        <td>선임연구원</td>
+        <td><div class="sub-text">ICT역량강화교육사업 관리 (발주 및 운영)</div></td>
+      </tr>
+      <tr>
+        <td class="period">2019.06 — 2020.12</td>
+        <td><div class="degree-name">고양시정연구원</div></td>
+        <td>위촉연구원</td>
+        <td><div class="sub-text">지방행정 및 재정관련 연구 수행</div></td>
+      </tr>
+      <tr>
+        <td class="period">2015.03 — 2017.02</td>
+        <td><div class="degree-name">교육부 자살과 학생정신건강연구소</div></td>
+        <td>연구원</td>
+        <td><div class="sub-text">학생정신건강 국책사업 운영 및 정신건강 관련 정책연구 수행</div></td>
+      </tr>
+      <tr>
+        <td class="period">2013.10 — 2015.02</td>
+        <td><div class="degree-name">한국교육개발원</div></td>
+        <td>위촉연구원</td>
+        <td><div class="sub-text">국립대학평가연구 (대학평가지표 분석 등)</div></td>
+      </tr>
+      <tr>
+        <td class="period">2011.09 — 2013.08</td>
+        <td><div class="degree-name">경희대학교 학생지원센터</div></td>
+        <td>연구조교</td>
+        <td><div class="sub-text">학생커리어개발프로그램 운영 및 부서 행정</div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Publications -->
+<section id="pub">
+  <div class="sec-header">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Publications</h2>
+  </div>
+
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--muted);margin-bottom:1.5rem;letter-spacing:0.04em;">학위논문</h3>
+  <div class="pub-card thesis">
+    <span class="pub-tag thesis">박사논문</span>
+    <div class="pub-title">지방자치단체장 리더십이 지방정부 혁신에 미치는 영향 — 조직 성과와 공무원 혁신행동을 중심으로</div>
+    <div class="pub-meta"><span>성균관대학교 국정전문대학원</span><span>2025</span></div>
+  </div>
+  <div class="pub-card thesis" style="margin-bottom:3rem;">
+    <span class="pub-tag thesis">석사논문</span>
+    <div class="pub-title">가족의 기능과 사회적 자본이 대학생의 반사회적 성향에 미치는 영향</div>
+    <div class="pub-meta"><span>경희대학교 일반대학원</span><span>2013</span></div>
+  </div>
+
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--muted);margin-bottom:1.5rem;letter-spacing:0.04em;">학술논문 (최근 3년)</h3>
+
+  <div class="pub-card ssci">
+    <span class="pub-tag ssci">SSCI · Accept</span>
+    <div class="pub-title">Holding Incumbent Chief Executives Accountable in Local Government: Political versus Administrative Determinants</div>
+    <div class="pub-meta"><span>Journal of Public Policy (Cambridge Univ. Press)</span><span>1저자</span><span>2026.02</span></div>
+  </div>
+  <div class="pub-card kci">
+    <span class="pub-tag kci">KCI</span>
+    <div class="pub-title">디지털정보화수준이 온라인기반 참여에 미치는 영향 — 장애여부에 따른 사회자본의 매개효과 다중집단분석</div>
+    <div class="pub-meta"><span>한국행정학보, 58(1), 97-130</span><span>1저자</span><span>2024.03</span></div>
+  </div>
+  <div class="pub-card kci">
+    <span class="pub-tag kci">KCI</span>
+    <div class="pub-title">접근성 유형에 따른 의료불균형 영향 연구: 경기도 미충족의료 경험 분석</div>
+    <div class="pub-meta"><span>정책분석평가학회보, 34(3), 29-57</span><span>1저자</span><span>2024.09</span></div>
+  </div>
+  <div class="pub-card kci">
+    <span class="pub-tag kci">KCI</span>
+    <div class="pub-title">프로그램 논리모형을 활용한 단기 해외연수 프로그램의 효과성 분석 — fs/QCA</div>
+    <div class="pub-meta"><span>한국정책학회보, 33(3), 87-125</span><span>2저자</span><span>2024.09</span></div>
+  </div>
+  <div class="pub-card kci">
+    <span class="pub-tag kci">KCI</span>
+    <div class="pub-title">청소년을 위한 보고듣고말하기 2.0 효과성 평가 연구</div>
+    <div class="pub-meta"><span>정신건강과 사회복지, 2(3), 195-215</span><span>교신저자</span><span>2024.09</span></div>
+  </div>
+</section>
+
+<!-- 학회 발표 -->
+<section id="conf">
+  <div class="sec-header">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">학회 발표</h2>
+  </div>
+  <div class="conf-item">
+    <span class="conf-badge intl">해외</span>
+    <div>
+      <div class="conf-title">Policy Innovation in Local Government: Evidence from a Conjoint Experiment</div>
+      <div class="conf-meta">ICPP7 Chiang Mai 2025 · 2025.07.02 · IPPA</div>
+    </div>
+  </div>
+  <div class="conf-item">
+    <span class="conf-badge intl">해외</span>
+    <div>
+      <div class="conf-title">Leadership Capacity and Policy Entrepreneurship in Local Governments</div>
+      <div class="conf-meta">IRSPM 2025 · 2025.04.08 · IRSPM</div>
+    </div>
+  </div>
+  <div class="conf-item">
+    <span class="conf-badge intl">해외</span>
+    <div>
+      <div class="conf-title">Local Government Elections and Incumbent Chief Executives' Accountability</div>
+      <div class="conf-meta">AVSE Global 2024 (Vietnam) · 2024.10.29 · AVSE</div>
+    </div>
+  </div>
+  <div class="conf-item">
+    <span class="conf-badge dom">국내</span>
+    <div>
+      <div class="conf-title">단기해외연수 프로그램의 효과성 분석: fs/QCA를 중심으로</div>
+      <div class="conf-meta">한국정책학회 춘계학회 2024 · 2024.04.19 · 한국정책학회</div>
+    </div>
+  </div>
+  <div class="conf-item">
+    <span class="conf-badge dom">국내</span>
+    <div>
+      <div class="conf-title">장애인의 디지털정보화수준이 온라인기반 사회참여에 미치는 영향</div>
+      <div class="conf-meta">한국행정학회 춘계학회 2023 · 2023.04.15 · 한국행정학회</div>
+    </div>
+  </div>
+</section>
+
+<!-- 수상 -->
+<section id="awards">
+  <div class="sec-header">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">수상</h2>
+  </div>
+  <div class="award-item">
+    <div class="award-date">2025.08.25</div>
+    <div>
+      <div class="award-grade">총장상</div>
+      <div class="award-content">성균관대학교 국정전문대학원 성적우수상</div>
+      <div class="award-org">성균관대학교</div>
+    </div>
+  </div>
+  <div class="award-item">
+    <div class="award-date">2025.01.23</div>
+    <div>
+      <div class="award-grade" style="background:var(--accent2);">우수상 · 2위</div>
+      <div class="award-content">BK21 플랫폼 거버넌스 논문경진대회 우수상</div>
+      <div class="award-org">성균관대학교 BK21</div>
+    </div>
+  </div>
+  <div class="award-item">
+    <div class="award-date">2024.01.13</div>
+    <div>
+      <div class="award-grade" style="background:#8a8a8a;">은상</div>
+      <div class="award-content">국정전문대학원 총동문회 연구논문경진대회 은상</div>
+      <div class="award-org">성균관대 국정전문대학원</div>
+    </div>
+  </div>
+</section>
+
+<!-- 자격 -->
+<section id="licenses">
+  <div class="sec-header">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">자격·면허</h2>
+  </div>
+  <div class="lic-grid">
+    <div class="lic-card">
+      <div class="lic-name">사회조사분석사 2급</div>
+      <div class="lic-meta">2014.06.02 · 한국산업인력공단</div>
+    </div>
+    <div class="lic-card">
+      <div class="lic-name">사회복지사 2급</div>
+      <div class="lic-meta">2013.07.05 · 보건복지부</div>
+    </div>
+    <div class="lic-card">
+      <div class="lic-name">보육교사 2급</div>
+      <div class="lic-meta">2013.05.07 · 보건복지부</div>
+    </div>
+    <div class="lic-card">
+      <div class="lic-name">가정복지사 1급</div>
+      <div class="lic-meta">2011.02.28 · 대한가정학회</div>
+    </div>
+    <div class="lic-card">
+      <div class="lic-name">MOS Master</div>
+      <div class="lic-meta">2009.01.29 · Microsoft</div>
+    </div>
+  </div>
+</section>
+
+<!-- 연구용역 -->
+<section id="projects">
+  <div class="sec-header">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">연구용역 실적 <span style="font-size:1.2rem;color:var(--muted);font-weight:300;">총 21건</span></h2>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card"><div class="proj-num">01 · 2022</div><div class="proj-name">원전지역 국가산업단지 유치 기본구상 연구</div><div class="proj-agency">경북도청</div><div class="proj-period">2022.04 — 2022.09</div></div>
+    <div class="proj-card"><div class="proj-num">02 · 2022</div><div class="proj-name">정신건강증진시설 인력 교육체계개발 연구</div><div class="proj-agency">한국보건복지인재원</div><div class="proj-period">2022.04 — 2022.12</div></div>
+    <div class="proj-card"><div class="proj-num">03 · 2022</div><div class="proj-name">사회서비스종사자 안전 및 권리보호 지침 개발</div><div class="proj-agency">한국보건복지인재원</div><div class="proj-period">2022.08 — 2022.12</div></div>
+    <div class="proj-card"><div class="proj-num">04 · 2022</div><div class="proj-name">2022 고양시 재정투자사업 평가 연구</div><div class="proj-agency">고양시</div><div class="proj-period">2022.05 — 2022.12</div></div>
+    <div class="proj-card"><div class="proj-num">05 · 2023</div><div class="proj-name">울진 원자력수소 국가산업단지 타당성조사</div><div class="proj-agency">경상북도 / 울진군청</div><div class="proj-period">2022.12 — 2023.07</div></div>
+    <div class="proj-card"><div class="proj-num">06 · 2023</div><div class="proj-name">중·저준위 방폐장 유치지역 성과 분석 연구</div><div class="proj-agency">한국원자력환경공단</div><div class="proj-period">2023.06 — 2023.12</div></div>
+    <div class="proj-card"><div class="proj-num">07 · 2023</div><div class="proj-name">아동보호전문기관 사례관리 모형 개발 연구</div><div class="proj-agency">아동권리보장원 / 복지부</div><div class="proj-period">2023.03 — 2023.11</div></div>
+    <div class="proj-card"><div class="proj-num">08 · 2024</div><div class="proj-name">청소년용 자살예방생명지킴이 교육 효과성 평가</div><div class="proj-agency">보건복지부</div><div class="proj-period">2023.07 — 2024.02</div></div>
+    <div class="proj-card"><div class="proj-num">09 · 2024</div><div class="proj-name">성주군 공공임대주택 기본계획 및 타당성 조사</div><div class="proj-agency">경상북도 / 성주군청</div><div class="proj-period">2023.08 — 2024.12</div></div>
+    <div class="proj-card"><div class="proj-num">10 · 2024</div><div class="proj-name">울진군 소멸위기대응 기본계획 변경 및 시행계획 수립</div><div class="proj-agency">울진군청</div><div class="proj-period">2024.01 — 2024.06</div></div>
+    <div class="proj-card"><div class="proj-num">11 · 2024</div><div class="proj-name">국립현대미술관 분관체계 조직정비 연구</div><div class="proj-agency">문화체육관광부</div><div class="proj-period">2024.04 — 2024.09</div></div>
+    <div class="proj-card"><div class="proj-num">12 · 2025</div><div class="proj-name">영천시 공공시설 위탁 타당성 조사 연구</div><div class="proj-agency">경상북도 영천시</div><div class="proj-period">2024.12 — 2025.02</div></div>
+    <div class="proj-card"><div class="proj-num">13 · 2025</div><div class="proj-name">GH고령자복지주택 사업추진 전략수립 연구</div><div class="proj-agency">경기주택도시공사</div><div class="proj-period">2024.09 — 2025.06</div></div>
+    <div class="proj-card"><div class="proj-num">14 · 2025</div><div class="proj-name">대구 중구 남산1동 도시재생활성화계획 수립</div><div class="proj-agency">대구광역시 / 중구청</div><div class="proj-period">2024.07 — 2025.05</div></div>
+    <div class="proj-card"><div class="proj-num">15 · 2025</div><div class="proj-name">대구형 고령자복지주택 도입 방안 연구</div><div class="proj-agency">대구도시개발공사</div><div class="proj-period">2024.11 — 2025.10</div></div>
+    <div class="proj-card"><div class="proj-num">16 · 2025</div><div class="proj-name">계촌 웰컴센터 문화기획 및 예술마을 공간구상</div><div class="proj-agency">강원특별자치도 평창군</div><div class="proj-period">2024.12 — 2025.04</div></div>
+    <div class="proj-card"><div class="proj-num">17 · 2025</div><div class="proj-name">지역경제 활성화를 위한 이민사회 대응 정책발굴</div><div class="proj-agency">경기도의회</div><div class="proj-period">2025.05 — 2025.09</div></div>
+    <div class="proj-card"><div class="proj-num">18 · 2025</div><div class="proj-name">대상별 맞춤형 자살예방 제도개선과제 발굴</div><div class="proj-agency">안전생활실천시민연합</div><div class="proj-period">2025.04 — 2025.10</div></div>
+    <div class="proj-card"><div class="proj-num">19 · 2026</div><div class="proj-name">미국 대외정책변화에 따른 시나리오 분석 협업 연구</div><div class="proj-agency">경기연구원</div><div class="proj-period">2025.09 — 2026.02</div></div>
+    <div class="proj-card"><div class="proj-num">20 · 2025</div><div class="proj-name">국립아시아문화전당 조직진단 및 직제 개선방안</div><div class="proj-agency">문화체육관광부</div><div class="proj-period">2025.08 — 2025.11</div></div>
+    <div class="proj-card"><div class="proj-num">21 · 2026</div><div class="proj-name">경북형 고령자 주거모델 개발 연구</div><div class="proj-agency">경상북도개발공사</div><div class="proj-period">2025.11 — 2026.01</div></div>
+  </div>
+</section>
+
+<!-- 연락처 -->
+<section id="contact">
+  <div class="sec-header">
+    <span class="sec-num">08</span>
+    <h2 class="sec-title">연락처</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-lbl">휴대폰</div>
+      <a href="tel:01064198406" class="contact-val">010-6419-8406</a>
+    </div>
+    <div class="contact-item">
+      <div class="contact-lbl">개인 이메일</div>
+      <a href="/cdn-cgi/l/email-protection#b0d5c5dedad9df858187f0ded1c6d5c29ed3dfdd" class="contact-val"><span class="__cf_email__" data-cfemail="e68393888c8f89d3d7d1a68887908394c885898b">[email&#160;protected]</span></a>
+    </div>
+    <div class="contact-item">
+      <div class="contact-lbl">업무 이메일</div>
+      <a href="/cdn-cgi/l/email-protection#86b6b6c6b4b6eae7e4a8e5e9a8edf4" class="contact-val"><span class="__cf_email__" data-cfemail="83b3b3c3b1b3efe2e1ade0ecade8f1">[email&#160;protected]</span></a>
+    </div>
+    <div class="contact-item">
+      <div class="contact-lbl">소속</div>
+      <span class="contact-val">㈜이공랩 · 고려대 평화와 민주주의연구소</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2025 오은지 Oh Eunji. All rights reserved.</span>
+  <span class="footer-copy">㈜이공랩 · 고려대 평화와 민주주의연구소</span>
+</footer>
+
+</body>
+</html>
