@@ -67,6 +67,8 @@
     .pub-card.kci::before { background: var(--accent); }
     .pub-card.ssci::before { background: #c0392b; }
     .pub-card.thesis::before { background: var(--accent2); }
+    .pub-card[style*="--border-color:#e8a838"]::before { background: #e8a838; }
+    .pub-card[style*="--border-color:#aaa"]::before { background: #aaa; }
     .pub-tag { font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; display: inline-block; padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.7rem; font-weight: 700; }
     .pub-tag.kci { background: var(--tag-bg); color: var(--accent); }
     .pub-tag.ssci { background: #fdf0ee; color: #c0392b; }
@@ -310,21 +312,6 @@
     <h2 class="sec-title">출판논문 <span class="sec-en">Publications</span></h2>
   </div>
 
-  <h3 style="font-size:1.1rem;font-weight:600;color:var(--muted);margin-bottom:1.5rem;">학위논문 <span style="font-size:0.9rem;font-weight:400;">Dissertations</span></h3>
-
-  <div class="pub-card thesis">
-    <span class="pub-tag thesis">박사논문 · Doctoral Thesis</span>
-    <div class="pub-title">지방자치단체장 리더십이 지방정부 혁신에 미치는 영향 — 조직 성과와 공무원 혁신행동을 중심으로</div>
-    <div class="en" style="margin-bottom:0.5rem;">The Impact of Local Government Leadership on Innovation: Focusing on Organizational Performance and Public Servants' Innovative Behavior</div>
-    <div class="pub-meta"><span>성균관대학교 국정전문대학원</span><span>2025</span></div>
-  </div>
-  <div class="pub-card thesis" style="margin-bottom:3rem;">
-    <span class="pub-tag thesis">석사논문 · Master's Thesis</span>
-    <div class="pub-title">가족의 기능과 사회적 자본이 대학생의 반사회적 성향에 미치는 영향</div>
-    <div class="en" style="margin-bottom:0.5rem;">Effects of Family Function and Social Capital on Antisocial Tendencies of University Students</div>
-    <div class="pub-meta"><span>경희대학교 일반대학원</span><span>2013</span></div>
-  </div>
-
   <h3 style="font-size:1.1rem;font-weight:600;color:var(--muted);margin-bottom:1.5rem;">학술논문 <span style="font-size:0.9rem;font-weight:400;">Journal Articles (Recent 3 Years)</span></h3>
 
   <div class="pub-card ssci">
@@ -356,6 +343,43 @@
     <div class="en" style="margin-bottom:0.4rem;">Effectiveness Evaluation of "See It, Hear It, Say It 2.0" Program for Adolescents</div>
     <div class="pub-meta"><span>정신건강과 사회복지, 2(3), 195-215</span><span>교신저자 · Corresponding Author</span><span>2024.09</span></div>
   </div>
+
+
+  <h3 style="font-size:1.1rem;font-weight:600;color:var(--muted);margin-bottom:1.5rem;margin-top:3rem;">학위논문 <span style="font-size:0.9rem;font-weight:400;">Dissertations</span></h3>
+
+  <div class="pub-card thesis">
+    <span class="pub-tag thesis">박사논문 · Doctoral Thesis</span>
+    <div class="pub-title">지방자치단체장 리더십이 지방정부 혁신에 미치는 영향 — 조직 성과와 공무원 혁신행동을 중심으로</div>
+    <div class="en" style="margin-bottom:0.5rem;">The Impact of Local Government Leadership on Innovation: Focusing on Organizational Performance and Public Servants' Innovative Behavior</div>
+    <div class="pub-meta"><span>성균관대학교 국정전문대학원</span><span>2025</span></div>
+  </div>
+  <div class="pub-card thesis">
+    <span class="pub-tag thesis">석사논문 · Master's Thesis</span>
+    <div class="pub-title">가족의 기능과 사회적 자본이 대학생의 반사회적 성향에 미치는 영향</div>
+    <div class="en" style="margin-bottom:0.5rem;">Effects of Family Function and Social Capital on Antisocial Tendencies of University Students</div>
+    <div class="pub-meta"><span>경희대학교 일반대학원</span><span>2013</span></div>
+  </div>
+
+  <h3 style="font-size:1.1rem;font-weight:600;color:var(--muted);margin-bottom:1.5rem;margin-top:3rem;">Under Review</h3>
+
+  <div class="pub-card" style="--border-color:#e8a838;">
+    <span class="pub-tag" style="background:#fdf6e8;color:#b07d20;">Under Review</span>
+    <div class="pub-title">Leadership Capacity and Policy Entrepreneurship in Local Governments</div>
+    <div class="pub-meta"><span>Public Performance &amp; Management Review</span></div>
+  </div>
+  <div class="pub-card" style="--border-color:#e8a838;">
+    <span class="pub-tag" style="background:#fdf6e8;color:#b07d20;">Under Review</span>
+    <div class="pub-title">How Does the Institutionalization of Presidential Parties Change Ministers' Cabinet Careers?</div>
+    <div class="pub-meta"><span>Political Studies</span></div>
+  </div>
+
+  <h3 style="font-size:1.1rem;font-weight:600;color:var(--muted);margin-bottom:1.5rem;margin-top:3rem;">Working Paper</h3>
+
+  <div class="pub-card" style="--border-color:#aaa;">
+    <span class="pub-tag" style="background:#f2f2f2;color:#666;">Working Paper</span>
+    <div class="pub-title">Policy Innovation in Local Government: Evidence from a Conjoint Experiment</div>
+  </div>
+
 </section>
 
 <!-- 학회 발표 -->
